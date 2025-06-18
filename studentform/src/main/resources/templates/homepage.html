@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
+    <th:block th:fragment="navbar">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/signup}"> Signup</a>
+        <a th:href="@{/students}">Student list </a>
+    <form method="get" th:action="@{/students}">
+        <input th:name="search" />
+        <button>Search</button>
+    </form>
+</th:block>
 
 <h1> Welcome to the M2I student test app </h1>
-<br>
-<h2> Which action do you want to do ? </h2>
-<p>- <a th:href="@{/signup}"> Sign up a student</a></p>
-<p>- <a th:href="@{/students}">See student list </a> </p>
-<p>- <a th:href="@{/search}">Search for specific student(s)</a></p>
 
 </body>
 </html>

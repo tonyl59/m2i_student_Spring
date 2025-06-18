@@ -5,15 +5,19 @@
     <title>Student detail </title>
 </head>
 <body>
+<span th:replace="~{homepage :: navbar}"></span>
+
 <a th:href="@{/}"> Home </a>
 <br>
 <a th:href="@{/students}"> Back to student list </a>
 
 <h1> Student detail (ID = <a th:text="${student.getId()}"></a>)</h1>
 
+<div th:object="${student}">
 <p>Last Name : <a th:text="${student.getLastname()}"></a></p>
 <p>First Name : <a th:text="${student.getFirstname()}"></a></p>
 <p>Age : <a th:text="${student.getAge()}"></a></p>
 <p>Mail : <a th:text="${student.getMail()}"></a></p>
+</div>
 </body>
 </html>

@@ -29,8 +29,9 @@ public class StudentService {
 
     public void create(Student student) {
 
-        student.setId(cid++);
+        student.setId(cid);
         this.students.put(cid,student);
+        cid++;
     }
 
     public List<Student> get_all(){
@@ -43,8 +44,9 @@ public class StudentService {
 
     public List<Student> search_names(String name){
         List<Student> results = new ArrayList<>();
+        name = name.toLowerCase();
         for(Student s : students.values()) {
-            if (s.getFirstname().contains(name) || s.getLastname().contains(name)) {
+            if (s.getFirstname().toLowerCase().contains(name) || s.getLastname().toLowerCase().contains(name)) {
                 results.add(s);
             }
         }

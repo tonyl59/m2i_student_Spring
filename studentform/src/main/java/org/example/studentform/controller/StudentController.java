@@ -4,12 +4,8 @@ import org.example.studentform.entity.Student;
 import org.example.studentform.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 public class StudentController {
@@ -22,9 +18,12 @@ public class StudentController {
     public String homePage(){return "homepage";}
 
     @GetMapping("/students")
-    public String list(Model model) {
-        List<Student> students = studentService.get_all();
-        model.addAttribute("students",students);
+    public String list(@RequestParam(name ="search", required = false) String search, Model model) {
+        if (search == null){
+            model.addAttribute("students",studentService.get_all());
+        }else{
+            model.addAttribute("students",studentService.search_names(search));
+        }
         return "listpage";
     }
 
@@ -39,15 +38,11 @@ public class StudentController {
         model.addAttribute("student", new Student());
         return "signuppage";
     }
-
-
     @PostMapping("/add")
     public String submitStudent(@ModelAttribute("student") Student student){
         studentService.create(student);
         return "redirect:/signup";
     }
-
-
-
-
 }
+
+
