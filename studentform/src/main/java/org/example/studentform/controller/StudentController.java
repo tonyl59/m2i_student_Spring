@@ -5,7 +5,9 @@ import org.example.studentform.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Set;
@@ -32,6 +34,17 @@ public class StudentController {
         Student student = studentService.get_by_id(id);
         model.addAttribute(student);
         return "detailpage";
+    }
+    @GetMapping("/signup")
+    public String addStudent(Model model){
+        model.addAttribute("student", new Student());
+        return "signuppage";
+    }
+
+
+    @PostMapping("/signupadd")
+    public String submitStudent(@ModelAttribute("student") Student student){
+        return "redirect:/";
     }
 
 
