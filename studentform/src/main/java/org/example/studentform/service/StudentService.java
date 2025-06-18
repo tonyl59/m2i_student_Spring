@@ -27,11 +27,10 @@ public class StudentService {
 
     }
 
-    public void create(String lastname, String firstname, int age, String mail) {
+    public void create(Student student) {
 
-        Student student = Student.builder().id(cid).lastname(lastname).firstname(firstname).age(age).mail(mail).build();
-        this.students.put(student.getId(),student);
-        cid++;
+        student.setId(cid++);
+        this.students.put(cid,student);
     }
 
     public List<Student> get_all(){

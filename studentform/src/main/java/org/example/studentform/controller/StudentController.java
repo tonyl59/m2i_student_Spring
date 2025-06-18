@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class StudentController {
@@ -42,9 +41,10 @@ public class StudentController {
     }
 
 
-    @PostMapping("/signupadd")
+    @PostMapping("/add")
     public String submitStudent(@ModelAttribute("student") Student student){
-        return "redirect:/";
+        studentService.create(student);
+        return "redirect:/signup";
     }
 
 

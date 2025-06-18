@@ -6,8 +6,30 @@
 </head>
 <body>
 
-<h1> Sign up form </h1>
+<h1> Please submit student informations </h1>
 <a th:href="@{/}"> Home </a>
+
+<form method="post" th:action="@{/add}" th:object="${student}">
+    <input th:field="*{id}" type="hidden" />
+    <div>
+        <label for="lastname">Last name :</label>
+        <input type="text" th:field="*{lastname}" id="lastname"/>
+    </div>
+    <div>
+        <label for="firstname">First name :</label>
+        <input type="text" th:field="*{firstname}" id="firstname"/>
+    </div>
+    <div>
+        <label for="age">Age :</label>
+        <input type="number" th:field="*{age}" id="age"/>
+    </div>
+    <div>
+        <label for="mail">Mail address :</label>
+        <input type="text" th:field="*{mail}" id="mail"/>
+    </div>
+
+    <button>Submit</button>
+</form>
 
 </body>
 </html>
